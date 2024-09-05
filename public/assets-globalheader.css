@@ -382,7 +382,7 @@ body {
 
 @media only screen and (max-width: 833px) {
     #globalnav .globalnav-content {
-        display: flex;
+        display: none;
         padding: 0;
         position: absolute;
         top: 0;
@@ -453,7 +453,7 @@ body {
 
 @media only screen and (max-width: 833px) {
     #globalnav .globalnav-list {
-        display: flex;
+        display: none;
         flex: 1;
         position: relative;
         z-index: 1;
@@ -548,7 +548,7 @@ body {
 
     #globalnav .globalnav-list>.globalnav-item:not(.globalnav-menu) .globalnav-link {
         opacity: 1;
-        visibility: visible;
+        visibility: hidden;
         transition: opacity .24s cubic-bezier(.4, 0, .6, 1) 80ms, visibility .24s step-start 80ms
     }
 
@@ -578,11 +578,14 @@ body {
 
 @media only screen and (max-width: 833px) {
     #globalnav .globalnav-item:not(.globalnav-menu, .globalnav-item-menu) {
-        width: 48px
+        display: none;
+        width: 70px;
     }
 
     #globalnav .globalnav-item:not(.globalnav-menu, .globalnav-item-menu) .globalnav-link {
-        height: 48px
+        display: none;
+
+        height: 50px;
     }
 }
 
@@ -605,12 +608,7 @@ body {
         text-align: left
     }
 
-    #globalnav .globalnav-item-apple .globalnav-link-apple {
-        width: max-content;
-        padding: 0 16px;
-        margin-inline-start: max(0px, var(--r-globalnav-safe-area-inset-start) - 16px)
-    }
-
+ 
     #globalnav.globalnav-text-zoom-in .globalnav-item-apple .globalnav-link-text {
         display: none
     }

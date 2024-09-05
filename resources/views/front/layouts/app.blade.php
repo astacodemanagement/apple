@@ -156,6 +156,7 @@
 
     <style>
         @import url(https://fonts.googleapis.com/css?family=Ek+Mukta:200);
+       
 
         body {
             margin: 0;
@@ -169,6 +170,7 @@
             overflow: hidden;
             height: 100%;
             transition: height 0.5s ease-in-out;
+            z-index: 999;
 
 
         }
@@ -414,6 +416,7 @@
 
             #globalnav {
                 display: none;
+                visibility: hidden;
             }
         }
     </style>
@@ -434,6 +437,14 @@
             padding: 2rem;
             transform: translateY(40px);
         }
+        .logo{
+            display: block;
+        }
+        @media (max-width: 600px) {
+           .logo{
+            display: none;
+        }
+    }
     </style>
 
     <link rel="stylesheet" href="{{ asset('assets-globalheader.css') }}">
@@ -466,16 +477,14 @@
                 </div>
                 <ul id="globalnav-list" class="globalnav-list">
                     <li data-analytics-element-engagement="globalnav hover - apple"
-                        class="globalnav-item globalnav-item-apple">
+                        class="globalnav-item globalnav-item-apple logo">
                         <a href="/" data-globalnav-item-name="apple" data-analytics-title="apple home"
                             aria-label="Apple" class="globalnav-link globalnav-link-apple">
                             <img src="/upload/profil/{{ $profil->gambar }}" alt="logo" width="80px"
-                                class="pt-3">
+                                class="pt-3 logo">
 
-                            <span class="globalnav-image-compact globalnav-link-image">
-
-                            </span>
-                            <span class="globalnav-link-text">Apple</span>
+                          
+                            
                         </a>
 
                     </li>
@@ -640,7 +649,7 @@
 
                                 </span>
                                 <span class="globalnav-image-compact">
-                                    <img src="/upload/profil/{{ $profil->gambar }}" alt="logo" width="80px">
+                                    <img src="/upload/profil/{{ $profil->gambar }}" alt="logo" width="100px">
 
                                 </span>
                             </a>
@@ -661,33 +670,32 @@
 
         </nav>
 
-        <div class="containernav">
-
-            <div class="header">
-                <div class="burger-container">
-                    <div id="burger">
-                        <div class="bar topBar"></div>
-                        <div class="bar btmBar"></div>
-                    </div>
-                </div>
-                <div class="icon icon-apple"></div>
-                <ul class="menu">
-                    <li class="menu-item"><a href="#">Mac</a></li>
-                    <li class="menu-item"><a href="#">iPad</a></li>
-                    <li class="menu-item"><a href="#">iPhone</a></li>
-                    <li class="menu-item"><a href="#">Watch</a></li>
-                    <li class="menu-item"><a href="#">TV</a></li>
-                    <li class="menu-item"><a href="#">Music</a></li>
-                    <li class="menu-item"><a href="#">Support</a></li>
-                </ul>
-                <div class="shop icon icon-bag"></div>
-            </div>
-        </div>
-
-
-        <div id="globalnav-curtain" class="globalnav-curtain"></div>
-        <div id="globalnav-placeholder" class="h-[53px]"></div>
     </div>
+    <div class="containernav">
+
+        <div class="header">
+            <div class="burger-container z-20">
+                <div id="burger">
+                    <div class="bar topBar"></div>
+                    <div class="bar btmBar"></div>
+                </div>
+            </div>
+            <div class="icon icon-apple"></div>
+            <ul class="menu">
+            @foreach ($categories as $category)
+                <li class="menu-item"><a href="/produk_sale">{{$category->nama_kategori_produk}}</a></li>
+            @endforeach
+            <li class="menu-item"><a href="/blog">Blog</a></li>
+
+               
+            </ul>
+            <div class="shop icon icon-bag"></div>
+        </div>
+    </div>
+
+
+    <div id="globalnav-curtain" class="globalnav-curtain"></div>
+    <div id="globalnav-placeholder" class="h-[53px]"></div>
 
 
 <div class="main">
@@ -809,23 +817,20 @@
 </script>
 
     <script>
-        (function() {
-            var burger = document.querySelector(".burger-container"),
-                header = document.querySelector(".header"),
-                containernav = document.querySelector(".containernav");
+   $(document).ready(function() {
+    var burger = $(".burger-container");
+    var header = $(".header");
+    var containernav = $(".containernav");
 
-            burger.onclick = function() {
+    burger.on("click", function() {
+        console.log("clicked");
+        if (containernav.height() === $(window).height()) {
+            containernav.css("height", "0");
+        } 
+        header.toggleClass("menu-opened");
+    });
+});
 
-                if (containernav.style.height === "100vh") {
-                    // animation remove style
-
-                    containernav.style.height = "0";
-                } else {
-                    containernav.style.height = "100vh";
-                }
-                header.classList.toggle("menu-opened");
-            };
-        })();
     </script>
     <script>
         $(document).ready(function() {

@@ -2,6 +2,18 @@
 
 All notable changes of the PHPUnit 10.5 release series are documented in this file using the [Keep a CHANGELOG](https://keepachangelog.com/) principles.
 
+## [10.5.32] - 2024-09-04
+
+### Added
+
+* [#5937](https://github.com/sebastianbergmann/phpunit/issues/5937): `failOnPhpunitDeprecation` attribute on the `<phpunit>` element of the XML configuration file and `--fail-on-phpunit-deprecation` CLI option for controlling whether PHPUnit deprecations should be considered when determining the test runner's shell exit code (default: do not consider)
+* `displayDetailsOnPhpunitDeprecations` attribute on the `<phpunit>` element of the XML configuration file and `--display-phpunit-deprecations` CLI option for controlling whether details on PHPUnit deprecations should be displayed (default: do not display)
+
+### Changed
+
+* [#5937](https://github.com/sebastianbergmann/phpunit/issues/5937): PHPUnit deprecations will, by default, no longer affect the test runner's shell exit code. This can optionally be turned back on using the `--fail-on-phpunit-deprecation` CLI option or the `failOnPhpunitDeprecation="true"` attribute on the `<phpunit>` element of the XML configuration file.
+* Details for PHPUnit deprecations will, by default, no longer be displayed. This can optionally be turned back on using the `--display-phpunit-deprecations` CLI option or the `displayDetailsOnPhpunitDeprecations` attribute on the `<phpunit>` element of the XML configuration file.
+
 ## [10.5.31] - 2024-09-03
 
 ### Changed
@@ -282,6 +294,7 @@ All notable changes of the PHPUnit 10.5 release series are documented in this fi
 
 * [#5563](https://github.com/sebastianbergmann/phpunit/issues/5563): `createMockForIntersectionOfInterfaces()` does not automatically register mock object for expectation verification
 
+[10.5.32]: https://github.com/sebastianbergmann/phpunit/compare/10.5.31...10.5.32
 [10.5.31]: https://github.com/sebastianbergmann/phpunit/compare/10.5.30...10.5.31
 [10.5.30]: https://github.com/sebastianbergmann/phpunit/compare/10.5.29...10.5.30
 [10.5.29]: https://github.com/sebastianbergmann/phpunit/compare/10.5.28...10.5.29
