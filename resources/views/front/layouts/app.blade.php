@@ -690,9 +690,11 @@
     </div>
 
 
-
+<div class="main">
 
     @yield('content')
+</div>
+
 
 
 
@@ -776,21 +778,36 @@
             });
         });
     </script>
-    <script>
-        $(function() {
-            $(".navParent").hover(
-                function() {
-                    $(this).find('.navChild').stop().slideDown('slow').css('display', 'block');
+<script>
+    $(function() {
+        var timeout;
 
-                    $('.main').slideDown('slow').css('filter', 'blur(10px)');
-                },
-                function() {
-                    $(this).find('.navChild').stop().slideUp('slow');
+        $(".navParent").hover(
+            function() {
+                clearTimeout(timeout);
+                $(this).find('.navChild').stop().slideDown('slow').css('display', 'block');
+                $('.main').css('filter', 'blur(10px)');
+            },
+            function() {
+                $(this).find('.navChild').stop().slideUp('slow');
+                $('.main').css('filter', 'blur(0px)'); 
+            }
+        );
+
+        $(".navChild").hover(
+            function() {
+                clearTimeout(timeout); 
+            },
+            function() {
+                timeout = setTimeout(() => {
+                    $(this).slideUp('slow');
                     $('.main').css('filter', 'blur(0px)');
-                }
-            );
-        });
-    </script>
+                }, 500);
+            }
+        );
+    });
+</script>
+
     <script>
         (function() {
             var burger = document.querySelector(".burger-container"),
